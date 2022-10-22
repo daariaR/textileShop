@@ -1,0 +1,211 @@
+﻿<mat-tab-group style="background-image:url(/assets/images/t.jpg); " >
+    <!-- NEW TAB -->
+        <mat-tab label="Lounge textils">
+
+
+            <mat-card style="background-color:rgb(255, 255, 255, 0.8);">
+                <p fxLayoutAlign="center center" style="font-size: 40px;color:rgb(0, 0, 0); font-family:'Cormorant Garamond', serif;">New products</p>
+            </mat-card>           
+    
+            <!-- CARD WITH NEW PRODUCTS -->
+            <mat-card style="background-color:rgb(255, 255, 255, 0.8);  font-family:'Cormorant Garamond', serif;" fxLayout="row" fxLayoutAlign="space-evenly center" >
+                <ng-container *ngFor="let dat of data">
+                    <mat-card-content class="container" fxLayout="column" style="padding: 40px;" >
+                        <img style="width: 300px; height: 300px;" flex mat-card-lg-image [src]="dat.url" >
+                        <p style="font-size:20px"><b>{{dat.desc}}</b></p>
+                        <mat-card-subtitle><b>{{dat.price | currency: 'RSD '}}</b></mat-card-subtitle>
+                        <div  fxLayout="row" style="width: 60%;" > 
+                            <button style="background-color:orange; margin:0 auto; color:white ;" (click)="onBuy(dat)" type="submit" mat-raised-button> Buy now </button>
+                            <button style="background-color:rgb(62, 80, 77); margin:0 auto; color:white ;" (click)="addToCart(dat)" type="submit" mat-raised-button> Add to cart </button>
+                        
+                        </div> 
+                    </mat-card-content>
+                </ng-container>           
+            </mat-card> 
+    
+            <mat-paginator [length]="data2.length" [pageSize]="size" [pageIndex]="page" (page)="getData($event)"></mat-paginator>
+    
+        
+            <section id="sidebar">
+                <mat-card style="margin:auto; width:98%; background-color: rgba(255,255,255,0.4); font-family:'Cormorant Garamond', serif;font-size:22px;" fxLayout="row wrap" fxLayoutAlign="space-evenly center" >
+
+                    <div class="py-2 border-bottom ml-3">
+                        <h6 class="font-weight-bold">Type of lounge products</h6>
+                        <div><span class="fa fa-minus" style="color:orange"></span></div>
+                        <form>
+                            <div class="form-group">
+                                <input type="radio" (click)="doFilter(blanket.value)" #blanket value="blanket" name="vrsta"> <b>Blankets</b>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" (click)="doFilter(cushion.value)" #cushion value="cushion" name="vrsta"> <b>Cushions</b>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" (click)="doFilter(chair.value)" #chair value="chair" name="vrsta"> <b>Chairs</b>
+                            </div>
+                    
+                        </form>
+                    </div>
+                </mat-card>
+
+                <mat-card style="margin:auto; width:98%; background-color: rgba(255,255,255,0.4); font-family:'Cormorant Garamond', serif;font-size:22px;" fxLayout="row wrap" fxLayoutAlign="space-evenly center" >
+                    <div class="py-2 border-bottom ml-3">
+                        <h6 class="font-weight-bold">Price range</h6>
+                        <div><span class="fa fa-minus" style="color:orange"></span></div>
+                        <input matInput type="text" #minP placeholder="min" /><br><br>
+                        <input matInput type="text" #maxP placeholder="max" /> <br><br>
+                        <button mat-raised-button (click)="doFilterPriceRange(minP.value , maxP.value)" >search</button>
+                    </div>
+                </mat-card>
+
+                <mat-card style="margin:auto; width:98%; background-color: rgba(255,255,255,0.4); font-family:'Cormorant Garamond', serif;font-size:22px;" fxLayout="row wrap" fxLayoutAlign="space-evenly center" >
+                    <div class="py-2 border-bottom ml-3">
+                        <h6 class="font-weight-bold">Restart filters </h6>
+                        <div><span class="fa fa-minus" style="color:orange"></span></div>
+                        <button mat-raised-button (click)="restartFilters()" > restart </button>
+                    </div>
+                </mat-card>
+
+            
+            </section>
+                
+            <section id="products">
+                <!-- CARD WITH LOUNGE TEXTILS -->
+                <mat-card style="margin:auto; width:98%;  font-family:'Cormorant Garamond', serif;" fxLayout="row wrap" fxLayoutAlign="space-evenly center" >
+                    <ng-container *ngFor="let dat of dataLounge">
+                        <mat-card-content  class="produkti" fxLayout="column" style="padding: 40px;  border: 2px white solid; " >
+                            <img style="width: 300px; height: 300px; " flex mat-card-lg-image [src]="dat.url" >
+                            <p style="font-size:20px"><b>{{dat.desc}} </b></p>
+                            <mat-card-subtitle ><b>{{dat.price | currency: 'RSD '}}</b> </mat-card-subtitle>
+                            <div  fxLayout="row"  fxLayoutAlign="space-evenly center" >
+                                <button style="background-color:orange;color:white ; width:40%"  (click)="onBuy(dat)" type="submit" mat-raised-button> Buy now </button>
+                                <button style="background-color:rgb(62, 80, 77); color:white ;width:40%"  (click)="addToCart(dat)" type="submit" mat-raised-button> Add to cart </button>
+                                <a class="buybtn" (click)="addToFavorites(dat)" > <mat-icon> favorite_border </mat-icon></a>
+                            </div> 
+                        </mat-card-content>
+                    </ng-container>
+                </mat-card>
+            </section>
+        </mat-tab>
+
+        <mat-tab label="Bedroom textils">
+        
+            <section id="sidebar">
+                <mat-card style="margin:auto; width:98%; background-color: rgba(255,255,255,0.4); font-family:'Cormorant Garamond', serif;font-size:22px;" fxLayout="row wrap" fxLayoutAlign="space-evenly center" >
+
+                    <div class="py-2 border-bottom ml-3">
+                        <h6 class="font-weight-bold">Type of lounge products</h6>
+                        <div><span class="fa fa-minus" style="color:orange"></span></div>
+                        <form>
+                            <div class="form-group">
+                                <input type="radio" (click)="doFilterB(cover.value)" #cover value="cover" name="vrsta"><b> Covers</b>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" (click)="doFilterB(sheets.value)" #sheets value="sheets" name="vrsta"> <b>Sheets</b>
+                            </div>
+                    
+                        </form>
+                    </div>
+                </mat-card>
+
+                <mat-card style="margin:auto; width:98%; background-color: rgba(255,255,255,0.4); font-family:'Cormorant Garamond', serif;font-size:22px;" fxLayout="row wrap" fxLayoutAlign="space-evenly center" >
+                    <div class="py-2 border-bottom ml-3">
+                        <h6 class="font-weight-bold">Price range</h6>
+                        <div><span class="fa fa-minus" style="color:orange"></span></div>
+                        <input matInput type="text" #minP2 placeholder="min" /><br><br>
+                        <input matInput type="text" #maxP2 placeholder="max" /> <br><br>
+                        <button mat-raised-button (click)="doFilterPriceRangeB(minP2.value , maxP2.value)" >search</button>
+                    </div>
+                </mat-card>
+
+                <mat-card style="margin:auto; width:98%; background-color: rgba(255,255,255,0.4); font-family:'Cormorant Garamond', serif;font-size:22px;" fxLayout="row wrap" fxLayoutAlign="space-evenly center" >
+                    <div class="py-2 border-bottom ml-3">
+                        <h6 class="font-weight-bold">Restart filters </h6>
+                        <div><span class="fa fa-minus" style="color:orange"></span></div>
+                        <button mat-raised-button (click)="restartFiltersB()" > restart </button>
+                    </div>
+                </mat-card>
+
+            
+            </section>
+                
+            <section id="products">
+                <!-- CARD WITH LOUNGE TEXTILS -->
+                <mat-card style="margin:auto; width:98%;  font-family:'Cormorant Garamond', serif;" fxLayout="row wrap" fxLayoutAlign="space-evenly center" >
+                    <ng-container *ngFor="let dat of dataBedroom">
+                        <mat-card-content  class="produkti" fxLayout="column" style="padding: 40px;  border: 2px white solid;  " >
+                            <img style="width: 300px; height: 300px; " flex mat-card-lg-image [src]="dat.url" >
+                            <p style="font-size:20px"><b>{{dat.desc}}</b> </p>
+                            <mat-card-subtitle ><b>{{dat.price | currency: 'RSD '}} </b></mat-card-subtitle>
+                            <div  fxLayout="row"  fxLayoutAlign="space-evenly center" >
+                                <button style="background-color:orange;color:white ; width:40%"   (click)="onBuy(dat)" type="submit" mat-raised-button> Buy now </button>
+                                <button style="background-color:rgb(62, 80, 77); color:white ;width:40%"  (click)="addToCart(dat)" type="submit" mat-raised-button> Add to cart </button>
+                                <a class="buybtn" (click)="addToFavorites(dat)" > <mat-icon> {{dat.faav}} </mat-icon></a>
+                            </div> 
+                        </mat-card-content>
+                    </ng-container>
+                </mat-card>
+            </section>
+        </mat-tab>
+
+        <mat-tab label="Bathroom textils">
+        
+            <section id="sidebar">
+                <mat-card style="margin:auto; width:98%; background-color: rgba(255,255,255,0.4); font-family:'Cormorant Garamond', serif;font-size:22px;" fxLayout="row wrap" fxLayoutAlign="space-evenly center" >
+
+                    <div class="py-2 border-bottom ml-3">
+                        <h6 class="font-weight-bold">Type of lounge products</h6>
+                        <div><span class="fa fa-minus" style="color:orange"></span></div>
+                        <form>
+                            <div class="form-group">
+                                <input type="radio" (click)="doFilter3(towel.value)" #towel value="towel" name="vrsta"><b> Towels</b>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" (click)="doFilter3(floormat.value)" #floormat value="floormat" name="vrsta"> <b>Floormats</b>
+                            </div>
+                    
+                        </form>
+                    </div>
+                </mat-card>
+
+                <mat-card style="margin:auto; width:98%; background-color: rgba(255,255,255,0.4); font-family:'Cormorant Garamond', serif;font-size:22px;" fxLayout="row wrap" fxLayoutAlign="space-evenly center" >
+                    <div class="py-2 border-bottom ml-3">
+                        <h6 class="font-weight-bold">Price range</h6>
+                        <div><span class="fa fa-minus" style="color:orange"></span></div>
+                        <input matInput type="text" #minP3 placeholder="min" /><br><br>
+                        <input matInput type="text" #maxP3 placeholder="max" /> <br><br>
+                        <button mat-raised-button (click)="doFilterPriceRange3(minP3.value , maxP3.value)" >search</button>
+                    </div>
+                </mat-card>
+
+                <mat-card style="margin:auto; width:98%; background-color: rgba(255,255,255,0.4); font-family:'Cormorant Garamond', serif;font-size:22px;" fxLayout="row wrap" fxLayoutAlign="space-evenly center" >
+                    <div class="py-2 border-bottom ml-3">
+                        <h6 class="font-weight-bold">Restart filters </h6>
+                        <div><span class="fa fa-minus" style="color:orange"></span></div>
+                        <button mat-raised-button (click)="restartFilters3()" > restart </button>
+                    </div>
+                </mat-card>
+
+            
+            </section>
+                
+            <section id="products">
+                <!-- CARD WITH LOUNGE TEXTILS -->
+                <mat-card style="margin:auto; width:98%; font-family:'Cormorant Garamond', serif;" fxLayout="row wrap" fxLayoutAlign="space-evenly center" >
+                    <ng-container *ngFor="let dat of dataBathroom">
+                        <mat-card-content  class="produkti" fxLayout="column" style="padding: 40px;  border: 2px white solid; " >
+                            <img style="width: 300px; height: 300px; " flex mat-card-lg-image [src]="dat.url" >
+                            <p style="font-size:20px"><b>{{dat.desc}}</b> </p>
+                            <mat-card-subtitle ><b>{{dat.price | currency: 'RSD '}}</b> </mat-card-subtitle>
+                            <div  fxLayout="row"  fxLayoutAlign="space-evenly center" >
+                                <button style="background-color:orange;color:white ; width:40%"   (click)="onBuy(dat)" type="submit" mat-raised-button> Buy now </button>
+                                <button style="background-color:rgb(62, 80, 77); color:white ;width:40%"  (click)="addToCart(dat)" type="submit" mat-raised-button> Add to cart </button>
+                                <a class="buybtn" (click)="addToFavorites(dat)" > <mat-icon> favorite_border </mat-icon></a>
+                            </div> 
+                        </mat-card-content>
+                    </ng-container>
+                </mat-card>
+            </section>
+        </mat-tab>
+    
+    
+</mat-tab-group>

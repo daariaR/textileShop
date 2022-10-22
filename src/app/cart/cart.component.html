@@ -1,0 +1,126 @@
+
+<mat-tab-group  style="background-image:url(/assets/images/t.jpg); ">
+
+    <mat-tab label="Shopping cart">
+        <div class="card" style="margin: 100px auto; background-image:url(/assets/images/cartpic.jpg); ">
+            <div class="row">
+                <div class="col-md-8 cart" style="background-color:rgba(0, 0, 0, 0.5)">
+                    <div class="title">
+                        <div class="row">
+                            <div class="col" style="color:white">
+                                <h4><b>Shopping Cart</b></h4>
+                            </div>
+                            <div class="col align-self-center text-right" style="color:white">{{itemNu}} items</div>
+                        </div>
+                    </div>
+                    <div class="row " style="background-color:rgba(255, 255, 255, 0.7);  border-radius:10px;" *ngFor="let t of myTextils">
+                        <div class="row main align-items-center" >
+                            <div class="col-2"><img class="img-fluid" src="{{t.url}}"></div>
+                            <div class="col">
+                                <div class="row" style="font-size:24px;">{{t.desc}}</div>
+                                <div class="row">{{t.type}}</div>
+                            </div>
+                            <div class="col">
+                                 <a (click)="smanji()">-</a>
+                                 <a class="border">{{valueNumber}}</a>
+                                 <a (click)="povecaj()">+</a> 
+                            </div>
+                            <div class="col"> {{t.price}} rsd 
+                                <span class="close"> 
+                                    <button style="color:red" (click)="removeItem(t)"><b>&#10005;</b></button>
+                                </span></div>
+                        </div>
+                    </div>
+                  
+                    <div class="back-to-shop">
+                        <div class="d-flex flex-row align-items-center back"><i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                            <h6 routerLink="/home">Continue shopping</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 summary" style="background-color:rgb(255, 255, 255, 0.8)">
+                    <div>
+                        <h5><b>Summary</b></h5>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col" style="padding-left:0;">ITEMS {{itemNu}}</div>
+                        <div class="col text-right"> {{sum}} rsd</div>
+                    </div><br><br>
+                    <form>
+                        <p>SHIPPING</p><br> <select> 
+                            <option class="text-muted">Standard-Delivery- 490 rsd</option>
+                        </select>
+                    
+                    </form>
+                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                        <div class="col">TOTAL PRICE</div>
+                        <div class="col text-right">{{sum+490}} rsd</div>
+                    </div> <button (click)="checkout(myTextils)" class="btn" style="font-size:20px">CHECKOUT</button>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+
+    <mat-tab label="Cart history">
+
+        <div class="card" style="margin: 100px auto; background-image:url(/assets/images/cartpic.jpg);  ">
+            <div class="row" >
+                <div class="col-md-12 cart" style="background-color:rgba(0, 0, 0, 0.5); border-radius:8px;">
+                    <div class="title">
+                        <div class="row">
+                            <div class="col" style="color:white">
+                                <h4><b>Cart history</b></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row " style="background-color:rgba(255, 255, 255, 0.7);  border-radius:10px;" *ngFor="let tos of finalHistory">
+                        <div class="row main align-items-center" *ngFor="let t of tos" >
+                            <div class="col-2"><img class="img-fluid" src="{{t.url}}"></div>
+                            <div class="col">
+                                <div class="row" style="font-size:24px;">{{t.desc}}</div>
+                                <div class="row">{{t.type}}</div>
+                            </div>
+                            <div class="col"><a class="border">1</a></div>
+                            <div class="col"> {{t.price}} rsd 
+                               </div>
+                        </div>
+                        <div class="col align-self-center text-right" style="color:rgb(0, 0, 0)">{{tos.length}} items</div>
+                    </div>
+                  
+                    <div class="back-to-shop">
+                        <div class="d-flex flex-row align-items-center back"><i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                            <h6 routerLink="/home">Continue shopping</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-4 summary" style="background-color:rgb(255, 255, 255, 0.8)">
+                    <div>
+                        <h5><b>Summary</b></h5>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col" style="padding-left:0;">ITEMS {{itemNu}}</div>
+                        <div class="col text-right"> {{sum}} rsd</div>
+                    </div><br><br>
+                    <form>
+                        <p>SHIPPING</p><br> <select> 
+                            <option class="text-muted">Standard-Delivery- 490 rsd</option>
+                        </select>
+                    
+                    </form>
+                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                        <div class="col">TOTAL PRICE</div>
+                        <div class="col text-right">{{sum+490}} rsd</div>
+                    </div> <button (click)="checkout()" class="btn">CHECKOUT</button>
+                </div> -->
+            </div>
+        </div>
+
+    </mat-tab>
+
+
+
+
+</mat-tab-group>
+

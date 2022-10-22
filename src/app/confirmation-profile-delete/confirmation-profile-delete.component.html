@@ -1,0 +1,14 @@
+
+<div mat-dialog-content>
+
+    <mat-title>Are you sure you want to delete profile ?</mat-title>
+  
+   
+  </div>
+  
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()" [mat-dialog-close]="false">No</button>
+  
+    <button mat-button  (click)="onConfirm()" [mat-dialog-close]="true" >Yes</button>
+  </div>

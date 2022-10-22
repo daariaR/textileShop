@@ -1,0 +1,153 @@
+<div class="p-4"  style="background-image: url('/assets/images/t.jpg/'); ">
+    <div class="container">
+        <mat-tab-group>
+
+            
+            <mat-tab label="Profile" >
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="row" style="background-color: rgb(206, 174, 135, 0.3); width:100%; font-family:'Cormorant Garamond', serif; font-size:25px"><br><br>
+                    <div class="col-md-4 border-right"  style="text-align: center;">
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5" style="border-radius:10px">
+                            <img  src="assets/images/profile.png" style=" width: 200px; height:200px;">
+                        </div><br><br>
+                                    <div class="col-md-6"  style="margin: 0 auto;">
+                                    <label  style=" color:rgb(255, 255, 255)" for="firstName"><b> Username </b></label>
+                                    <input type="text" formControlName="username" class="form-control"  placeholder="Korisničko ime" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                        <div *ngIf="f.username.errors.required">Username is required</div>
+                                    </div>
+                                </div><br>
+
+                                <div class="col-md-6"  style="margin: 0 auto;">
+                                        <label  style=" color:rgb(255, 255, 255)" for="firstName"><b>Password</b>  </label><br>
+                                
+                                    <input type="password" formControlName="password" class="form-control" placeholder="leave blank if no changes"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
+                                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters
+                                        </div>
+                                    </div>
+                                    </div>
+                    </div>
+
+                    
+
+                    <div class="col-md-8" >
+                        <div class="p-3 py-5" style="text-align: center;">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex flex-row align-items-center back"><i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                                    <h6 routerLink="/home">Back to start</h6>
+                                </div>
+                            </div>
+
+                            <br> <div  style="text-align: center;">
+                                
+                                <div class="col-md-6"  style="margin: 0 auto;">
+                                    <label  style=" color:rgb(255, 255, 255)" for="firstName"><b>Name</b>  </label>
+                                    <input type="text" formControlName="firstName" placeholder="Ime"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                    </div>
+                                </div><br>
+                                <div class="col-md-6"  style="margin: 0 auto;">
+                                    <label  style=" color:rgb(255, 255, 255)" for="firstName"> <b>Last name </b></label>
+                                    <input type="text" formControlName="lastName" class="form-control" placeholder="Prezime" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                    </div>
+                                </div><br>
+
+                                <div class="col-md-6"  style="margin: 0 auto;">
+                                    <label  style=" color:rgb(255, 255, 255)" for="firstName"><b> E-mail address</b> </label>
+                                    <input type="text" formControlName="email" class="form-control" placeholder="Email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email address is required</div>
+                                    </div>
+                                </div><br>
+                                <div class="col-md-6"  style="margin: 0 auto;">
+                                    <label  style=" color:rgb(255, 255, 255)" for="firstName"><b>Phone number</b>  </label>
+                                    <input type="text" formControlName="phone" class="form-control"  placeholder="Broj telefona" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                        <div *ngIf="f.phone.errors.required">Phone is required</div>
+                                    </div>
+                                </div><br>
+
+                                <div class="col-md-6"  style="margin: 0 auto;">
+                                    <label  style=" color:rgb(255, 255, 255)" for="firstName"><b>Address</b>  </label>
+                                    <input type="text" formControlName="address" class="form-control" placeholder="Adresa" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+                                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                    <div *ngIf="f.address.errors.required">Address is required</div>
+                                    </div>
+                                </div> <br>
+
+
+                                <div>
+
+
+                                </div>
+
+                            
+
+                            <div class="form-group" style="padding: 20px">
+                                <button class="btn" style="background-color:rgba(143, 92, 30, 0.8); color:white;font-size:20px">
+                                    Save
+                                </button>
+                            </div>
+                        
+
+
+
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            </form>
+            <div class="form-group" style="padding: 20px; ">
+                <button (click)="deleteUser()" class="btn" style="background-color:rgba(255, 0, 0, 0.8); color:white; font-family:'Cormorant Garamond', serif;font-size:20px">
+                  Delete
+                </button>
+            </div>
+
+            </mat-tab>
+
+
+            <mat-tab label="Favorites">
+            <div  style=" width: 100%;">
+                <div class="py-12">
+                    <div class="max-w-md mx-auto bg-gray-100 shadow-lg rounded-lg md:max-w-5xl" style="background-color: rgb(206, 174, 135, 0.7)">
+                        <div class="md:flex ">
+                            <div class="w-full p-4 px-5 py-5">
+                                <div class="md:grid md:grid-cols-3 gap-2 ">
+                                    <div class="col-span-2 p-5">
+                                        <h1 class="text-xl font-medium " > My favorite textils </h1>
+                                        <div class="flex justify-between items-center mt-6 pt-6" *ngFor="let f of favorites" >
+                                            <div class="flex items-center"> <img style="width: 100px; height: 100px;" src="{{f.url}}" width="60" class="rounded ">
+                                                <div class="flex flex-col ml-3" style="color:white"> <span class="md:text-md font-medium">{{f.desc}}</span> 
+                                                    <span class="text-xs font-light text-black-400"> {{f.type}} </span> </div>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+            
+            
+                                                <div (click)="deleteFavorites(f)" > <i style="color: red; margin: 20px;  cursor: pointer;" class="fa fa-close text-xl font-large"></i> </div>
+                                            </div>
+                                        </div>
+            
+                                        <div class="flex justify-between items-center mt-6 pt-6 border-t">
+                                            <div class="flex items-center" style="color:white"><i class="fa fa-arrow-left text-sm pr-2"></i><a href=""> Nazad na postavke</a> </div>
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<section style="height: 900px; background-image:url(/assets/images/cartpic.jpg); ">
+<div class="card" style=" height: 900px; background-color:rgb(221, 133, 50, 0.8); ">
+    <div class="row" style="width:80%; margin: 0 auto">
+        <div class="col-md-6 cart" style=" margin: auto;">
+        <form style=" margin: 200px auto; padding-top: 60px; padding-bottom: 30px; background-color: white;  border-radius: 10px; width:400px;" 
+        fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      
+        <mat-form-field>
+                <input type="text" #username="ngModel" ngModel [(ngModel)] = "userModel.username" matInput placeholder="Username" name="username" required>
+                <mat-error *ngIf="username.hasError('required')">Field should not be empty</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field hintLabel="Please enter minimum 6 characters">
+            <input type="password" [type] = "hide ? 'password' : 'text' " #password="ngModel" ngModel [(ngModel)] = "userModel.password" matInput placeholder="Password" name="password" required minlength="6">
+            
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    
+            <mat-hint align="end"> {{ password.value?.length }} /6</mat-hint>
+        </mat-form-field>
+          
+        <button type="submit" mat-raised-button style=" background-color:white;color:rgb(255, 99, 9, 0.7)" [disabled]="f.invalid">Submit</button>
+    
+        <mat-label>{{ message }}</mat-label>
+        <a style="text-decoration: none; color:rgb(255, 99, 9);" routerLink="/signup"><button mat-raised-button style="color:white;background-color:rgb(221, 133, 50);">I don't have an account</button>  </a>
+        </form>
+    </div>
+    </div>
+    </div>
+    </section>

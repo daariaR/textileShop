@@ -1,0 +1,17 @@
+.produkti:hover {
+  opacity:0.8;
+}
+
+#sidebar {
+  width: 20%;
+  padding: 20px;
+  float: left;
+}
+
+
+#products {
+  width: 80%;
+  padding: 10px;
+  margin: 0;
+  float: right;
+}

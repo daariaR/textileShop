@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Cormorant+Garamond:ital,wght@1,300&display=swap');
+
+
+/*nav*/
+
+.navbar-nav .nav-link
+{
+    color: var(--secondary-color);
+}
+.navbar-nav .nav-link.active-link
+{
+    color: var(--primary-color);
+    text-decoration: none;
+    
+}
+
+
+
+.nav-item{
+    color:white;
+}
+
+.nav-item:hover{
+    color:rgba(255,255,255,0.6)
+}
